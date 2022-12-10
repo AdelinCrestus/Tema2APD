@@ -56,9 +56,12 @@ public class AngajatLVL2 extends Thread{
         }
         Main.printWriterProducts.printf("%s,%s,shipped\n",idOrder, idProduct );
         Main.writingProductsSemaphore.release();
-        int k = superior.orders_count.get(idOrder);
-        superior.orders_count.put(idOrder, k + 1);
+        int k = superior.getOrders_count().get(idOrder);
+        superior.getOrders_count().put(idOrder, k + 1);
         Main.inPool.decrementAndGet();
-        notifyAll();
+        synchronized (superior.getScanner())
+        {
+            superior.getScanner().notifyAll();
+        }
     }
 }

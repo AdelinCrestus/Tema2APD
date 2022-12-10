@@ -4,11 +4,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 
 public class AngajatLVL1 extends Thread {
-    Scanner scanner;
-    Scanner scanner2;
-    HashMap<String, Integer> orders;
-    ConcurrentHashMap<String, Integer> orders_count;
-    ExecutorService tpe;
+    private Scanner scanner;
+    private Scanner scanner2;
+    private HashMap<String, Integer> orders;
+    private ConcurrentHashMap<String, Integer> orders_count;
+    private ExecutorService tpe;
 
     public AngajatLVL1(Scanner scanner, ExecutorService tpe){
         this.scanner = scanner;
@@ -17,7 +17,45 @@ public class AngajatLVL1 extends Thread {
         this.tpe = tpe;
     }
 
+    public Scanner getScanner() {
+        return scanner;
+    }
 
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Scanner getScanner2() {
+        return scanner2;
+    }
+
+    public void setScanner2(Scanner scanner2) {
+        this.scanner2 = scanner2;
+    }
+
+    public HashMap<String, Integer> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(HashMap<String, Integer> orders) {
+        this.orders = orders;
+    }
+
+    public ConcurrentHashMap<String, Integer> getOrders_count() {
+        return orders_count;
+    }
+
+    public void setOrders_count(ConcurrentHashMap<String, Integer> orders_count) {
+        this.orders_count = orders_count;
+    }
+
+    public ExecutorService getTpe() {
+        return tpe;
+    }
+
+    public void setTpe(ExecutorService tpe) {
+        this.tpe = tpe;
+    }
 
     @Override
     public void run() {
@@ -96,6 +134,14 @@ public class AngajatLVL1 extends Thread {
         {
             while (left != 0)
             {
+                synchronized (scanner)
+                {
+                    try {
+                        scanner.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 left = Main.inPool.get();
                 if(left == 0)
                 {
