@@ -115,6 +115,14 @@ public class AngajatLVL1 extends Thread{
         boolean closedPool = false;
         while (!Tema2.closedPool.get()) {
 
+//            synchronized (orders)
+//            {
+//                try {
+//                    orders.wait();
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
             int inPool = Tema2.inPool.get();
             if(inPool == 0)
             {

@@ -73,9 +73,6 @@ public class AngajatLVL2 implements Runnable {
                     if(curOrderId != null && curOrderId.compareTo(idOrder)  == 0)
                     {
                         String curProductId = tokenizer.nextToken();
-                        //StringBuilder stringBuilder = new StringBuilder(curOrderId);
-                        //stringBuilder.append(",");
-                        //stringBuilder.append(curProductId);
                         try {
                             Tema2.writingProductsSemaphore.acquire();
                         } catch (InterruptedException e) {
@@ -103,5 +100,9 @@ public class AngajatLVL2 implements Runnable {
             }
         }
         Tema2.inPool.decrementAndGet();
+//        synchronized (orders)
+//        {
+//            orders.notifyAll();
+//        }
     }
 }
