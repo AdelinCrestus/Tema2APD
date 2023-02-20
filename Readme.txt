@@ -1,5 +1,9 @@
 Crestus Adelin 336CA
 
+Cerinta:
+
+Pentru aceasta aveam de implementat un procesator de comenzi de Black Friday in limbajul de programare Java, care sa foloseasca mecanisme de paralelizare,
+
 In main am preluat argumentele si am deschis fisierele.
 
 Am creat semafoarele si bariera de care aveam nevoie si am pornit primul nivel de Threaduri.
